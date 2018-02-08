@@ -17,8 +17,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/**
+ * User management routes
+ */
 Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
+Route::get('user/{user_id}', 'UserController@getUserData');
+Route::post('upload-avatar', 'UserController@uploadAvatar');
 
-Route::get('quiz', 'QuizController@getQuizzes');
+/**
+ * Facebook login routes
+ */
+Route::get('auth/{provider}', 'UserController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'UserController@handleProviderCallback');
 
-Route::post('confirm-answers', 'QuizController@confirmAnswers');
+/**
+ * Quiz routes
+ */
+Route::get('get-quiz', 'QuizController@getQuizzes');
+Route::post('user-answers', 'QuizController@confirmAnswers');
+
+

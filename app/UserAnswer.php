@@ -17,7 +17,7 @@ class UserAnswer extends Model
     /**
      * A user has many options
      */
-    public function options(){
-        return $this->hasMany(QuizOption::class);
+    public function option(){
+        return $this->belongsTo(QuizOption::class, 'quiz_option_id');
     }
 }
